@@ -1,6 +1,7 @@
 package com.example.android.myapplication;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,16 +19,12 @@ import com.airbnb.lottie.LottieAnimationView;
 public class ProfileActivity extends AppCompatActivity {
     Button callButton,emailButton;
     TextView phonetext,email;
-
+    public SharedPrefNightMode sharedPrefNightMode;
     private Switch nightSwitch;
     TextView favouriteText;
     LottieAnimationView favourite;
-    public SharedPrefNightMode sharedPrefNightMode;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        favouriteText = findViewById(R.id.favouriteText);
-        favourite = findViewById(R.id.favourite);
-
 
         sharedPrefNightMode = new SharedPrefNightMode(this);
         checkNightMode();
@@ -37,24 +34,7 @@ public class ProfileActivity extends AppCompatActivity {
         phonetext = findViewById(R.id.stringPhone);
         callButton = findViewById(R.id.call);
         emailButton = findViewById(R.id.email);
-        nightSwitch=(Switch)findViewById(R.id.nightSwitch);
-        if (sharedPrefNightMode.loadNightModeState()==true) {
-            nightSwitch.setChecked(true);
-        }
-        nightSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    sharedPrefNightMode.setNightModeState(true);
-                    restartApp();
-                }
-                else {
-                    sharedPrefNightMode.setNightModeState(false);
-                    restartApp();
-                }
-            }
-        });
-
+        nightSwitch = findViewById(R.id.nightSwitch2);
 
 
         emailButton.setOnClickListener(new View.OnClickListener() {
@@ -79,6 +59,24 @@ public class ProfileActivity extends AppCompatActivity {
         });
 
 
+        if (sharedPrefNightMode.loadNightModeState()==true) {
+            nightSwitch.setChecked(true);
+        }
+        nightSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    sharedPrefNightMode.setNightModeState(true);
+                    restartApp();
+                }
+                else {
+                    sharedPrefNightMode.setNightModeState(false);
+                    restartApp();
+                }
+            }
+        });
+
+
     }
 
 
@@ -95,6 +93,7 @@ public class ProfileActivity extends AppCompatActivity {
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);
         }
+
     }
 
 
@@ -109,6 +108,11 @@ public class ProfileActivity extends AppCompatActivity {
 
 
 
+
+
+
+
+
     public void restartApp () {
         Intent i = new Intent(getApplicationContext(),ProfileActivity.class);
         startActivity(i);
@@ -119,3 +123,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
     else  setTheme(R.style.AppTheme);}
 }
+
+
+
+

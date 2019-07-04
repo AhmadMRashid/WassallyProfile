@@ -28,14 +28,14 @@ public class IntroActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent mintent = new Intent(IntroActivity.this, SliderActivity.class);
+                Intent mintent = new Intent(IntroActivity.this, LoginActivity.class);
                 startActivity(mintent);
                 finish();
             }
         }, SPLASH_TIME);
     }
     public void restartApp(){
-        Intent myintent = new Intent(this , ProfileActivity.class);
+        Intent myintent = new Intent(this , IntroActivity.class);
         startActivity(myintent);
         finish();
     }

@@ -28,7 +28,7 @@
                     android:orientation="vertical">
                     <Switch
                         android:text="Night mode  "
-                        android:id="@+id/nightSwitch"
+                        android:id="@+id/nightSwitch2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="?attr/textcolor"
